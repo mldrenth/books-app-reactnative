@@ -1,12 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, ScrollView, SafeAreaView } from 'react-native';
+import books from "./data/books.json"
+import IBook from './types/Book';
+import BookList from './components/BookList';
 
 export default function App() {
+  const [libraryBooks, setLibraryBooks] = useState<IBook[]>(books)
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+      <BookList movies={libraryBooks} />
+      </ScrollView>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -16,5 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    textAlign: 'center'
   },
 });
